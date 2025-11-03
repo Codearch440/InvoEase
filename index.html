@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InvoEase - Invoice Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="form-section">
+      <h2>InvoEase - Invoice Generator</h2>
+
+      <h3>From (Freelancer)</h3>
+      <input type="text" id="fromName" placeholder="Your Name" />
+      <input type="text" id="fromAddress" placeholder="Your Address" />
+      <input type="email" id="fromEmail" placeholder="Your Email" />
+      <input type="text" id="fromGST" placeholder="Your GSTIN / Tax ID" />
+
+      <h3>To (Client)</h3>
+      <input type="text" id="clientName" placeholder="Client Name" />
+      <input type="text" id="clientAddress" placeholder="Client Address" />
+      <input type="email" id="clientEmail" placeholder="Client Email" />
+      <input type="text" id="clientGST" placeholder="Client GSTIN / Tax ID" />
+
+      <h3>Items</h3>
+      <div id="items"></div>
+      <button id="addItem">+ Add Item</button>
+
+      <div class="taxes">
+        <label>SGST (%)</label>
+        <input type="number" id="sgst" value="9" min="0" />
+        <label>CGST (%)</label>
+        <input type="number" id="cgst" value="9" min="0" />
+        <label>Discount (%)</label>
+        <input type="number" id="discount" value="0" min="0" />
+      </div>
+
+      <div class="currency">
+        <label>Currency</label>
+        <select id="currency">
+          <option value="₹">₹ INR</option>
+          <option value="$">$ USD</option>
+          <option value="€">€ EUR</option>
+          <option value="£">£ GBP</option>
+        </select>
+      </div>
+
+      <button id="generate">Generate Invoice</button>
+      <button id="download">Download PDF</button>
+    </div>
+
+    <div class="preview-section">
+      <h2>Preview</h2>
+      <div id="preview" class="invoice"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
