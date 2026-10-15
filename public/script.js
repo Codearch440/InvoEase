@@ -485,34 +485,43 @@ document.getElementById('statusFilterPills').addEventListener('click', (e) => {
 
 document.getElementById('refreshDashboardBtn').onclick = loadDashboardData;
 
-// Quick Dashboard Testing Actions
-document.getElementById('quickTestIdorBtn').onclick = async () => {
-  logToDrawerConsole("Testing IDOR (A01): Fetching Invoice ID #2 (belongs to Bob)...");
-  await viewInvoiceDetails(2);
-};
+// Quick Dashboard Testing Actions (if present)
+const qIdor = document.getElementById('quickTestIdorBtn');
+if (qIdor) {
+  qIdor.onclick = async () => {
+    logToDrawerConsole("Testing IDOR (A01): Fetching Invoice ID #2 (belongs to Bob)...");
+    await viewInvoiceDetails(2);
+  };
+}
 
-document.getElementById('quickTestSqliBtn').onclick = async () => {
-  const input = document.getElementById('invoiceSearchInput');
-  input.value = "' OR 1=1 --";
-  logToDrawerConsole("Testing SQL Injection (A03): Executing search with ' OR 1=1 --");
-  await loadDashboardData();
-};
+const qSqli = document.getElementById('quickTestSqliBtn');
+if (qSqli) {
+  qSqli.onclick = async () => {
+    const input = document.getElementById('invoiceSearchInput');
+    input.value = "' OR 1=1 --";
+    logToDrawerConsole("Testing SQL Injection (A03): Executing search with ' OR 1=1 --");
+    await loadDashboardData();
+  };
+}
 
-document.getElementById('quickTestPrivilegeBtn').onclick = async () => {
-  logToDrawerConsole('Testing Privilege Escalation (A01): Requesting /api/admin/users...');
-  try {
-    const res = await apiFetch('/api/admin/users');
-    const data = await res.json();
-    logToDrawerConsole(`Response (${res.status}):\n${JSON.stringify(data, null, 2)}`);
-    if (res.ok) {
-      alert(`Privilege Escalation Test:\nReceived ${data.users.length} user records! In Lab mode, non-admin role check is bypassed.`);
-    } else {
-      alert(`Protected in Secure Mode:\nStatus ${res.status}: ${data.error}`);
+const qPriv = document.getElementById('quickTestPrivilegeBtn');
+if (qPriv) {
+  qPriv.onclick = async () => {
+    logToDrawerConsole('Testing Privilege Escalation (A01): Requesting /api/admin/users...');
+    try {
+      const res = await apiFetch('/api/admin/users');
+      const data = await res.json();
+      logToDrawerConsole(`Response (${res.status}):\n${JSON.stringify(data, null, 2)}`);
+      if (res.ok) {
+        alert(`Privilege Escalation Test:\nReceived ${data.users.length} user records! In Lab mode, non-admin role check is bypassed.`);
+      } else {
+        alert(`Protected in Secure Mode:\nStatus ${res.status}: ${data.error}`);
+      }
+    } catch (e) {
+      logToDrawerConsole(`Error: ${e.message}`);
     }
-  } catch (e) {
-    logToDrawerConsole(`Error: ${e.message}`);
-  }
-};
+  };
+}
 
 async function viewInvoiceDetails(id) {
   try {

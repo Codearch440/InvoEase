@@ -3,83 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InvoEase Pro – Freelance Invoice & Security Lab</title>
-  <meta name="description" content="Modern GST-compliant invoice generator for freelancers with comprehensive OWASP Top 10 security testing lab." />
+  <title>InvoEase Pro – Invoicing & Security Suite</title>
+  <meta name="description" content="Minimalist freelance GST invoice generator and manual OWASP security audit testbed." />
   
-  <!-- Google Fonts -->
+  <!-- Modern Clean Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark-theme">
-  <!-- Top Application Header -->
+  <!-- Minimalist Top Navigation Bar -->
   <header class="app-header">
     <div class="header-left">
       <div class="brand-logo">
-        <div class="logo-icon">📄</div>
+        <svg class="logo-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <line x1="10" y1="9" x2="8" y2="9"></line>
+        </svg>
         <div class="logo-text">
           <span class="logo-title">InvoEase <span class="badge-pro">PRO</span></span>
-          <span class="logo-subtitle">GST Invoice & OWASP Testing Suite</span>
         </div>
       </div>
 
       <nav class="main-nav">
         <button class="nav-btn active" data-view="dashboard" id="navDashboardBtn">
-          <span class="nav-icon">📊</span> Dashboard
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+          Dashboard
         </button>
         <button class="nav-btn" data-view="generator" id="navGeneratorBtn">
-          <span class="nav-icon">✏️</span> Invoice Builder
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          Invoice Builder
         </button>
         <button class="nav-btn" data-view="clients" id="navClientsBtn">
-          <span class="nav-icon">👥</span> Clients
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Clients
         </button>
         <button class="nav-btn" data-view="logs" id="navLogsBtn">
-          <span class="nav-icon">🛡️</span> Audit Logs
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Audit Logs
         </button>
         <button class="nav-btn" data-view="debug" id="navDebugBtn">
-          <span class="nav-icon">⚙️</span> System Info
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+          System Info
         </button>
       </nav>
     </div>
 
     <div class="header-right">
-      <!-- Security Mode Indicator & Switch -->
-      <div class="security-mode-wrapper" id="securityModeWrapper">
-        <div class="mode-pill" id="securityModeBadge" title="Click to view OWASP Top 10 Matrix">
+      <!-- Minimalist Security Mode Capsule -->
+      <div class="security-mode-wrapper">
+        <div class="mode-pill" id="securityModeBadge">
           <span class="mode-dot"></span>
           <span class="mode-text" id="securityModeText">Loading Mode...</span>
         </div>
-        <button class="btn btn-sm btn-outline-warning" id="toggleSecurityModeBtn" title="Switch between Lab (Auditable) and Secure (Hardened) modes">
-          ⚡ Toggle Mode
+        <button class="btn btn-xs btn-outline" id="toggleSecurityModeBtn">
+          Switch Mode
         </button>
       </div>
 
-      <!-- OWASP Lab Drawer Trigger -->
-      <button class="btn btn-sm btn-gradient" id="openOwaspDrawerBtn">
-        🎯 OWASP Top 10 Lab
+      <!-- Minimalist OWASP Lab Drawer Trigger -->
+      <button class="btn btn-sm btn-outline" id="openOwaspDrawerBtn">
+        OWASP Lab Matrix
       </button>
 
-      <!-- Theme Switcher -->
-      <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode">
-        🌙
+      <!-- Minimalist Theme Switcher -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
 
-      <!-- User Profile / Auth State -->
+      <!-- Minimalist User Widget -->
       <div class="user-auth-widget" id="userAuthWidget">
         <button class="btn btn-sm btn-primary" id="openLoginModalBtn">Sign In</button>
       </div>
     </div>
   </header>
 
-  <!-- Notification Banner -->
-  <div class="global-banner lab-banner" id="globalBanner">
+  <!-- Clean Sub-Header Status Line -->
+  <div class="global-banner" id="globalBanner">
     <div class="banner-content">
-      <span class="banner-icon">⚠️</span>
-      <span id="bannerMessage"><strong>LAB MODE ACTIVE:</strong> Endpoints are configured for manual OWASP Top 10 vulnerability assessment. Toggle to <em>SECURE</em> to test protections.</span>
+      <span class="banner-indicator"></span>
+      <span id="bannerMessage"><strong>LAB MODE ACTIVE:</strong> Endpoints are vulnerable for manual OWASP Top 10 testing. Toggle to <em>SECURE</em> to test protections.</span>
     </div>
-    <button class="banner-close" id="closeBannerBtn">×</button>
+    <button class="banner-close" id="closeBannerBtn" aria-label="Close notification">×</button>
   </div>
 
   <!-- Main Content Container -->
@@ -89,12 +99,12 @@
     <section class="view-section active" id="view-dashboard">
       <div class="section-header">
         <div>
-          <h1 class="view-title">Freelancer Dashboard</h1>
-          <p class="view-desc">Monitor financial metrics, tax collections, and manage invoices.</p>
+          <h1 class="view-title">Dashboard</h1>
+          <p class="view-desc">Financial metrics, invoices, and tax ledger overview.</p>
         </div>
         <div class="header-actions">
-          <button class="btn btn-secondary" id="refreshDashboardBtn">🔄 Refresh</button>
-          <button class="btn btn-primary" id="createNewInvoiceBtn">+ New Invoice</button>
+          <button class="btn btn-outline" id="refreshDashboardBtn">Refresh</button>
+          <button class="btn btn-primary" id="createNewInvoiceBtn">Create Invoice</button>
         </div>
       </div>
 
@@ -103,51 +113,37 @@
         <div class="metric-card">
           <div class="metric-header">
             <span class="metric-label">Total Invoiced</span>
-            <span class="metric-icon">💰</span>
+            <span class="metric-tag">Billed</span>
           </div>
           <div class="metric-value" id="statTotalInvoiced">₹0.00</div>
-          <div class="metric-footer" id="statInvoiceCount">0 Invoices Generated</div>
+          <div class="metric-footer" id="statInvoiceCount">0 Invoices Issued</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-header">
-            <span class="metric-label">Paid Revenue</span>
-            <span class="metric-icon">✅</span>
+            <span class="metric-label">Settled Payments</span>
+            <span class="metric-tag tag-success">Cleared</span>
           </div>
-          <div class="metric-value text-success" id="statPaidRevenue">₹0.00</div>
-          <div class="metric-footer" id="statPaidCount">0 Cleared payments</div>
+          <div class="metric-value" id="statPaidRevenue">₹0.00</div>
+          <div class="metric-footer" id="statPaidCount">0 Paid Invoices</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-header">
-            <span class="metric-label">Pending / Due</span>
-            <span class="metric-icon">⏳</span>
+            <span class="metric-label">Outstanding Balance</span>
+            <span class="metric-tag tag-warning">Pending</span>
           </div>
-          <div class="metric-value text-warning" id="statPendingAmount">₹0.00</div>
-          <div class="metric-footer" id="statPendingCount">0 Invoices awaiting settlement</div>
+          <div class="metric-value" id="statPendingAmount">₹0.00</div>
+          <div class="metric-footer" id="statPendingCount">0 Invoices Awaiting Settlement</div>
         </div>
 
         <div class="metric-card">
           <div class="metric-header">
-            <span class="metric-label">Total GST Collected</span>
-            <span class="metric-icon">🏛️</span>
+            <span class="metric-label">GST Liability</span>
+            <span class="metric-tag tag-neutral">Tax</span>
           </div>
-          <div class="metric-value text-info" id="statGstCollected">₹0.00</div>
-          <div class="metric-footer">SGST + CGST Total Liability</div>
-        </div>
-      </div>
-
-      <!-- Quick Vulnerability Demonstration Alert in Dashboard -->
-      <div class="lab-callout-card">
-        <div class="callout-icon">🧪</div>
-        <div class="callout-body">
-          <h4>OWASP A01 & A03 Quick Auditing Shortcuts:</h4>
-          <p>Test IDOR or SQL Injection directly: Try searching with <code>' OR 1=1 --</code> in the table search, or test fetching another user's invoice ID below.</p>
-          <div class="callout-actions">
-            <button class="btn btn-sm btn-outline-danger" id="quickTestIdorBtn">⚡ Test IDOR: Fetch Bob's Invoice (ID #2)</button>
-            <button class="btn btn-sm btn-outline-danger" id="quickTestSqliBtn">⚡ Test SQLi: Search with ' OR 1=1 --</button>
-            <button class="btn btn-sm btn-outline-info" id="quickTestPrivilegeBtn">⚡ Test Privilege Escalation (/api/admin/users)</button>
-          </div>
+          <div class="metric-value" id="statGstCollected">₹0.00</div>
+          <div class="metric-footer">SGST + CGST Total</div>
         </div>
       </div>
 
@@ -155,8 +151,8 @@
       <div class="card table-card">
         <div class="card-toolbar">
           <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="invoiceSearchInput" placeholder="Search client name or invoice # (Test SQLi in Lab Mode)" />
+            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="invoiceSearchInput" placeholder="Filter by client name or invoice number..." />
           </div>
           <div class="status-filters" id="statusFilterPills">
             <button class="pill active" data-status="">All</button>
@@ -174,16 +170,16 @@
                 <th>ID</th>
                 <th>Invoice #</th>
                 <th>Date</th>
-                <th>Client Name</th>
-                <th>Grand Total</th>
-                <th>GST (SGST+CGST)</th>
+                <th>Client</th>
+                <th>Amount</th>
+                <th>GST</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody id="invoicesTableBody">
               <tr>
-                <td colspan="8" class="text-center text-muted py-4">Loading invoices...</td>
+                <td colspan="8" class="text-center text-muted py-4">Loading invoice records...</td>
               </tr>
             </tbody>
           </table>
@@ -191,18 +187,18 @@
       </div>
     </section>
 
-    <!-- ================= VIEW 2: INVOICE GENERATOR ================= -->
+    <!-- ================= VIEW 2: INVOICE BUILDER ================= -->
     <section class="view-section" id="view-generator">
       <div class="section-header">
         <div>
-          <h1 class="view-title">GST Invoice Builder</h1>
-          <p class="view-desc">Create professional, compliant GST tax invoices with real-time A4 preview and instant PDF export.</p>
+          <h1 class="view-title">Invoice Builder</h1>
+          <p class="view-desc">Generate GST tax invoices with real-time A4 sheet formatting.</p>
         </div>
         <div class="header-actions">
-          <button class="btn btn-secondary" id="resetInvoiceFormBtn">Clear Form</button>
-          <button class="btn btn-outline-primary" id="printInvoiceBtn">🖨️ Print</button>
-          <button class="btn btn-primary" id="downloadPdfBtn">📥 Download PDF</button>
-          <button class="btn btn-success" id="saveInvoiceToDbBtn">💾 Save to Database</button>
+          <button class="btn btn-outline" id="resetInvoiceFormBtn">Clear</button>
+          <button class="btn btn-outline" id="printInvoiceBtn">Print</button>
+          <button class="btn btn-outline" id="downloadPdfBtn">Download PDF</button>
+          <button class="btn btn-primary" id="saveInvoiceToDbBtn">Save Invoice</button>
         </div>
       </div>
 
@@ -210,64 +206,64 @@
         <!-- Left: Form Controls -->
         <div class="form-pane card">
           <div class="form-header-tabs">
-            <h3>Invoice Details</h3>
-            <span class="badge badge-info" id="activeCurrencyDisplay">INR (₹)</span>
+            <h3 class="pane-title">Invoice Configuration</h3>
+            <span class="badge" id="activeCurrencyDisplay">INR (₹)</span>
           </div>
 
-          <!-- Freelancer (From) Details -->
+          <!-- Freelancer (From) -->
           <div class="form-group-box">
             <div class="box-title">
-              <span>👤 Freelancer (From)</span>
-              <button class="btn-link-sm" id="loadProfileToInvoiceBtn">Load My Profile</button>
+              <span>Freelancer Details (From)</span>
+              <button class="btn-link-sm" id="loadProfileToInvoiceBtn">Load Profile</button>
             </div>
             <div class="grid-2">
               <div>
-                <label>Your Name / Business</label>
-                <input type="text" id="genFromName" placeholder="e.g. Alice Web Studio" />
+                <label>Name / Legal Business</label>
+                <input type="text" id="genFromName" placeholder="Business Name" />
               </div>
               <div>
-                <label>Your GSTIN / Tax ID</label>
-                <input type="text" id="genFromGST" placeholder="e.g. 27ABCDE1234F1Z5" />
+                <label>GSTIN / Tax Identifier</label>
+                <input type="text" id="genFromGST" placeholder="GSTIN" />
               </div>
             </div>
             <div class="grid-2">
               <div>
-                <label>Email</label>
-                <input type="email" id="genFromEmail" placeholder="your@email.com" />
+                <label>Email Address</label>
+                <input type="email" id="genFromEmail" placeholder="billing@studio.com" />
               </div>
               <div>
-                <label>Address</label>
-                <input type="text" id="genFromAddress" placeholder="Street, City, State, Country" />
+                <label>Physical Address</label>
+                <input type="text" id="genFromAddress" placeholder="Street, City, State" />
               </div>
             </div>
           </div>
 
-          <!-- Client (To) Details -->
+          <!-- Client (To) -->
           <div class="form-group-box">
             <div class="box-title">
-              <span>🏢 Client (To)</span>
+              <span>Client Details (To)</span>
               <select id="quickClientSelect" class="quick-select">
-                <option value="">-- Choose Existing Client --</option>
+                <option value="">Choose Existing Client</option>
               </select>
             </div>
             <div class="grid-2">
               <div>
-                <label>Client / Business Name</label>
-                <input type="text" id="genClientName" placeholder="Client Name" />
+                <label>Client Name / Entity</label>
+                <input type="text" id="genClientName" placeholder="Client Entity" />
               </div>
               <div>
-                <label>Client GSTIN / Tax ID</label>
-                <input type="text" id="genClientGST" placeholder="Client GSTIN (Optional)" />
+                <label>Client GSTIN</label>
+                <input type="text" id="genClientGST" placeholder="Optional" />
               </div>
             </div>
             <div class="grid-2">
               <div>
                 <label>Client Email</label>
-                <input type="email" id="genClientEmail" placeholder="client@company.com" />
+                <input type="email" id="genClientEmail" placeholder="finance@client.com" />
               </div>
               <div>
-                <label>Client Address</label>
-                <input type="text" id="genClientAddress" placeholder="Client Billing Address" />
+                <label>Billing Address</label>
+                <input type="text" id="genClientAddress" placeholder="Billing Address" />
               </div>
             </div>
           </div>
@@ -275,14 +271,14 @@
           <!-- Line Items -->
           <div class="form-group-box">
             <div class="box-title">
-              <span>📦 Line Items (Services / Products)</span>
-              <button class="btn btn-sm btn-outline-primary" id="genAddItemBtn">+ Add Row</button>
+              <span>Line Items</span>
+              <button class="btn btn-xs btn-outline" id="genAddItemBtn">+ Add Item</button>
             </div>
             <div class="items-header-row">
               <span class="col-desc">Description</span>
               <span class="col-qty">Qty</span>
               <span class="col-price">Rate (<span class="currency-symbol">₹</span>)</span>
-              <span class="col-total">Total</span>
+              <span class="col-total">Line Total</span>
               <span class="col-del"></span>
             </div>
             <div id="genItemsList" class="items-list">
@@ -290,10 +286,10 @@
             </div>
           </div>
 
-          <!-- Taxes, Discount, Currency & SSRF/Logo Upload -->
+          <!-- Tax & Rates -->
           <div class="form-group-box">
             <div class="box-title">
-              <span>⚙️ Taxes, Discounts & Currency</span>
+              <span>Taxes & Financial Settings</span>
             </div>
             <div class="grid-4">
               <div>
@@ -311,29 +307,29 @@
               <div>
                 <label>Currency</label>
                 <select id="genCurrency">
-                  <option value="₹">₹ INR (Indian Rupee)</option>
-                  <option value="$">$ USD (US Dollar)</option>
-                  <option value="€">€ EUR (Euro)</option>
-                  <option value="£">£ GBP (British Pound)</option>
-                  <option value="A$">A$ AUD (Australian Dollar)</option>
+                  <option value="₹">₹ INR</option>
+                  <option value="$">$ USD</option>
+                  <option value="€">€ EUR</option>
+                  <option value="£">£ GBP</option>
+                  <option value="A$">A$ AUD</option>
                 </select>
               </div>
             </div>
 
-            <!-- Logo Section (Tests A08 File Upload & A10 SSRF) -->
+            <!-- Branding / Logo Upload -->
             <div class="logo-lab-box">
-              <label>Company Logo / Branding</label>
+              <label>Entity Logo / Branding</label>
               <div class="grid-2">
                 <div>
-                  <span class="input-hint">Option A: Upload Logo (Tests A08 Integrity)</span>
+                  <span class="input-hint">Local File Upload</span>
                   <input type="file" id="logoFileInput" accept="image/*" />
-                  <button class="btn btn-xs btn-secondary mt-1" id="uploadLogoBtn">Upload File</button>
+                  <button class="btn btn-xs btn-outline mt-1" id="uploadLogoBtn">Upload</button>
                 </div>
                 <div>
-                  <span class="input-hint">Option B: Fetch from URL (Tests A10 SSRF)</span>
+                  <span class="input-hint">Remote Asset URL</span>
                   <div class="flex-row gap-1">
-                    <input type="text" id="remoteLogoUrlInput" placeholder="http://example.com/logo.png" />
-                    <button class="btn btn-xs btn-danger" id="fetchRemoteLogoBtn" title="In Lab mode, tests SSRF against localhost or internal endpoints">Fetch URL</button>
+                    <input type="text" id="remoteLogoUrlInput" placeholder="http://domain.com/logo.png" />
+                    <button class="btn btn-xs btn-outline" id="fetchRemoteLogoBtn">Fetch</button>
                   </div>
                 </div>
               </div>
@@ -343,10 +339,10 @@
               </div>
             </div>
 
-            <!-- Notes & Payment Terms (Tests A03 Stored XSS) -->
+            <!-- Notes -->
             <div class="mt-3">
-              <label>Payment Terms & Notes (HTML / XSS Test Field)</label>
-              <textarea id="genNotes" rows="2" placeholder="e.g. Payment due within 15 days. Bank: HDFC Bank, A/C: 1234567890, IFSC: HDFC0001234"></textarea>
+              <label>Payment Terms & Banking Information</label>
+              <textarea id="genNotes" rows="2" placeholder="Payment due within 15 days of issuance."></textarea>
             </div>
           </div>
         </div>
@@ -362,14 +358,14 @@
       </div>
     </section>
 
-    <!-- ================= VIEW 3: CLIENTS DIRECTORY ================= -->
+    <!-- ================= VIEW 3: CLIENT DIRECTORY ================= -->
     <section class="view-section" id="view-clients">
       <div class="section-header">
         <div>
           <h1 class="view-title">Client Directory</h1>
-          <p class="view-desc">Store client billing details and tax identification numbers for fast invoicing.</p>
+          <p class="view-desc">Saved entities, tax identifiers, and registered billing addresses.</p>
         </div>
-        <button class="btn btn-primary" id="openAddClientModalBtn">+ Add New Client</button>
+        <button class="btn btn-primary" id="openAddClientModalBtn">Add Client</button>
       </div>
 
       <div class="clients-grid" id="clientsGrid">
@@ -377,14 +373,14 @@
       </div>
     </section>
 
-    <!-- ================= VIEW 4: AUDIT LOGS (A09) ================= -->
+    <!-- ================= VIEW 4: AUDIT LOGS ================= -->
     <section class="view-section" id="view-logs">
       <div class="section-header">
         <div>
-          <h1 class="view-title">Security Audit Trail (OWASP A09)</h1>
-          <p class="view-desc">Real-time log of security events, authentication attempts, privilege elevations, and access violations.</p>
+          <h1 class="view-title">Security Audit Trail</h1>
+          <p class="view-desc">Access authorization logs, authentication history, and anomaly tracking.</p>
         </div>
-        <button class="btn btn-secondary" id="refreshLogsBtn">🔄 Refresh Logs</button>
+        <button class="btn btn-outline" id="refreshLogsBtn">Refresh Log</button>
       </div>
 
       <div class="card">
@@ -392,40 +388,40 @@
           <table class="data-table">
             <thead>
               <tr>
-                <th>Time</th>
-                <th>IP Address</th>
-                <th>User ID</th>
-                <th>Action</th>
+                <th>Timestamp</th>
+                <th>Source IP</th>
+                <th>Actor</th>
+                <th>Operation</th>
                 <th>Status</th>
-                <th>Details</th>
+                <th>Audit Context</th>
               </tr>
             </thead>
             <tbody id="auditLogsTableBody">
-              <tr><td colspan="6" class="text-center text-muted">Loading audit logs...</td></tr>
+              <tr><td colspan="6" class="text-center text-muted">Loading audit entries...</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- ================= VIEW 5: SYSTEM & MISCONFIG (A05 / A06) ================= -->
+    <!-- ================= VIEW 5: SYSTEM ENVIRONMENT ================= -->
     <section class="view-section" id="view-debug">
       <div class="section-header">
         <div>
-          <h1 class="view-title">System Environment & Dependency Audit</h1>
-          <p class="view-desc">Demonstrates A05 (Security Misconfiguration) information disclosure and A06 (Vulnerable Components).</p>
+          <h1 class="view-title">System & Component Inspection</h1>
+          <p class="view-desc">Runtime diagnostics, system environment, and third-party dependencies.</p>
         </div>
-        <button class="btn btn-secondary" id="fetchSystemInfoBtn">Inspect Environment</button>
+        <button class="btn btn-outline" id="fetchSystemInfoBtn">Inspect Runtime</button>
       </div>
 
       <div class="grid-2">
         <div class="card">
-          <div class="card-title"><h3>Environment Configuration (/api/debug/environment)</h3></div>
-          <div class="code-preview" id="envConfigPreview">Click "Inspect Environment" to check exposure in current mode.</div>
+          <div class="card-title"><h3 class="pane-title">Runtime Environment (/api/debug/environment)</h3></div>
+          <div class="code-preview" id="envConfigPreview">Select "Inspect Runtime" to check exposure in current mode.</div>
         </div>
         <div class="card">
-          <div class="card-title"><h3>Package Dependencies (/api/system/dependencies)</h3></div>
-          <div class="code-preview" id="depConfigPreview">Click "Inspect Environment" to audit dependencies.</div>
+          <div class="card-title"><h3 class="pane-title">Dependency Manifest (/api/system/dependencies)</h3></div>
+          <div class="code-preview" id="depConfigPreview">Select "Inspect Runtime" to check package inventory.</div>
         </div>
       </div>
     </section>
@@ -436,94 +432,93 @@
   <aside class="lab-drawer" id="owaspDrawer">
     <div class="drawer-header">
       <div class="drawer-title-group">
-        <h2>🎯 OWASP Top 10 Manual Testing Lab</h2>
-        <span class="drawer-subtitle">Interactive penetration testing walkthrough for InvoEase</span>
+        <h2>OWASP Top 10 Security Matrix</h2>
+        <span class="drawer-subtitle">Manual Penetration Testing Inspection Suite</span>
       </div>
       <button class="drawer-close" id="closeOwaspDrawerBtn">×</button>
     </div>
 
     <div class="drawer-mode-callout">
       <div class="flex-between">
-        <span>Current Target Mode: <strong id="drawerCurrentModeText" class="text-danger">LAB (AUDITABLE)</strong></span>
-        <button class="btn btn-xs btn-outline-warning" id="drawerToggleModeBtn">Toggle Mode</button>
+        <span>Target State: <strong id="drawerCurrentModeText" class="text-mode">LAB (AUDITABLE)</strong></span>
+        <button class="btn btn-xs btn-outline" id="drawerToggleModeBtn">Toggle Mode</button>
       </div>
-      <p class="text-sm mt-1">In <strong>Lab Mode</strong>, vulnerabilities are live for manual exploitation practice. In <strong>Secure Mode</strong>, industry-standard remediations are enforced.</p>
+      <p class="text-subtle-hint mt-1">In <strong>Lab Mode</strong>, vulnerabilities are live for manual assessment. In <strong>Secure Mode</strong>, defenses are enforced.</p>
     </div>
 
-    <!-- Output Console for Quick Tests -->
+    <!-- Output Inspector -->
     <div class="drawer-console-box">
       <div class="console-header">
-        <span>Terminal / Test Response Inspector</span>
+        <span>HTTP Inspector Output</span>
         <button class="btn-xs btn-link" id="clearConsoleBtn">Clear</button>
       </div>
-      <pre class="console-body" id="drawerConsoleOutput">// Select a "Run Test" action below or execute manual requests via browser DevTools or curl.</pre>
+      <pre class="console-body" id="drawerConsoleOutput">// Select a test below to trigger a live request and inspect responses.</pre>
     </div>
 
-    <!-- The 10 OWASP Categories Accordion -->
+    <!-- Accordion List -->
     <div class="owasp-accordion" id="owaspAccordionList">
       <!-- Injected dynamically by script.js -->
     </div>
   </aside>
 
-  <!-- ================= AUTH MODAL (LOGIN / REGISTER) ================= -->
+  <!-- ================= AUTH MODAL ================= -->
   <div class="modal-backdrop" id="authModalBackdrop">
     <div class="modal-card">
       <div class="modal-header">
-        <h2 id="authModalTitle">Sign In to InvoEase</h2>
+        <h2 id="authModalTitle">Sign In</h2>
         <button class="modal-close" id="closeAuthModalBtn">×</button>
       </div>
 
-      <!-- Quick Demo Account Fast-Logins -->
+      <!-- Quick Fast Logins -->
       <div class="demo-accounts-box">
-        <span class="demo-label">⚡ Fast Demo Logins:</span>
+        <span class="demo-label">Demo Test Personas:</span>
         <div class="demo-buttons-row">
-          <button class="btn btn-xs btn-outline-primary" id="quickLoginAliceBtn" title="Alice (User ID 1 - Standard Freelancer)">
-            👩 Alice (Freelancer)
+          <button class="btn btn-xs btn-outline" id="quickLoginAliceBtn" title="Alice (User ID 1 - Standard Freelancer)">
+            Alice (Freelancer)
           </button>
-          <button class="btn btn-xs btn-outline-primary" id="quickLoginBobBtn" title="Bob (User ID 2 - Used for cross-user IDOR testing)">
-            👨 Bob (Freelancer)
+          <button class="btn btn-xs btn-outline" id="quickLoginBobBtn" title="Bob (User ID 2 - Second Freelancer)">
+            Bob (Freelancer)
           </button>
-          <button class="btn btn-xs btn-outline-danger" id="quickLoginAdminBtn" title="Admin (User ID 3 - Administrative Role)">
-            👑 SuperAdmin
+          <button class="btn btn-xs btn-outline" id="quickLoginAdminBtn" title="Admin (User ID 3 - Administrative Role)">
+            Administrator
           </button>
         </div>
       </div>
 
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tabLoginBtn">Login</button>
-        <button class="auth-tab" id="tabRegisterBtn">Register New Account</button>
+        <button class="auth-tab active" id="tabLoginBtn">Sign In</button>
+        <button class="auth-tab" id="tabRegisterBtn">Register Account</button>
       </div>
 
       <form id="authForm" class="auth-form">
         <div class="form-group">
           <label for="authUsername">Username or Email</label>
-          <input type="text" id="authUsername" placeholder="e.g. alice_dev" required />
+          <input type="text" id="authUsername" placeholder="Username" required />
         </div>
 
         <div class="form-group">
           <label for="authPassword">Password</label>
-          <input type="password" id="authPassword" placeholder="••••••••" required />
+          <input type="password" id="authPassword" placeholder="Password" required />
         </div>
 
-        <!-- Extra fields shown only for registration -->
         <div id="registerExtraFields" class="hidden">
           <div class="form-group">
             <label for="authEmail">Email Address</label>
             <input type="email" id="authEmail" placeholder="your@email.com" />
           </div>
           <div class="form-group">
-            <label for="authBusinessName">Business / Freelancer Name</label>
-            <input type="text" id="authBusinessName" placeholder="My Freelance Studio" />
+            <label for="authBusinessName">Entity / Business Name</label>
+            <input type="text" id="authBusinessName" placeholder="Business Name" />
           </div>
           <div class="form-group">
             <label for="authGSTIN">GSTIN / Tax ID</label>
             <input type="text" id="authGSTIN" placeholder="27ABCDE1234F1Z5" />
           </div>
           <div class="form-group">
-            <label for="authRole">Assigned Role (Test A01 Mass Assignment in Lab Mode)</label>
+            <label for="authRole">Assigned Role</label>
             <select id="authRole">
-              <option value="freelancer">Freelancer (Standard)</option>
-              <option value="admin">Administrator (Privilege Escalation Test)</option>
+              <option value="freelancer">Freelancer</option>
+              <option value="admin">Administrator</option>
             </select>
           </div>
         </div>
@@ -531,7 +526,7 @@
         <div class="auth-error-msg hidden" id="authErrorMsg"></div>
 
         <button type="submit" class="btn btn-primary btn-block mt-3" id="authSubmitBtn">
-          Sign In
+          Continue
         </button>
       </form>
     </div>
@@ -541,32 +536,32 @@
   <div class="modal-backdrop" id="clientModalBackdrop">
     <div class="modal-card">
       <div class="modal-header">
-        <h2>Add New Client</h2>
+        <h2>Add Client Entity</h2>
         <button class="modal-close" id="closeClientModalBtn">×</button>
       </div>
       <form id="addClientForm" class="auth-form">
         <div class="form-group">
-          <label>Client / Business Name *</label>
-          <input type="text" id="newClientName" placeholder="Acme Corporation" required />
+          <label>Client Name / Entity *</label>
+          <input type="text" id="newClientName" placeholder="Client Name" required />
         </div>
         <div class="form-group">
           <label>Email Address</label>
-          <input type="email" id="newClientEmail" placeholder="billing@acme.corp" />
+          <input type="email" id="newClientEmail" placeholder="billing@client.com" />
         </div>
         <div class="form-group">
           <label>GSTIN / Tax ID</label>
-          <input type="text" id="newClientGSTIN" placeholder="27AABCA1122D1Z8" />
+          <input type="text" id="newClientGSTIN" placeholder="GSTIN" />
         </div>
         <div class="form-group">
           <label>Billing Address</label>
-          <input type="text" id="newClientAddress" placeholder="45 Commercial Blvd, Mumbai" />
+          <input type="text" id="newClientAddress" placeholder="Physical Address" />
         </div>
-        <button type="submit" class="btn btn-primary btn-block mt-3">Save Client</button>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Save Entity</button>
       </form>
     </div>
   </div>
 
-  <!-- External Libraries for PDF & Canvas Generation -->
+  <!-- External Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <!-- Application Logic -->
