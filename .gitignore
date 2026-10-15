@@ -1,0 +1,6 @@
+node_modules/
+invoease.db
+invoease.db-journal
+public/uploads/*
+!public/uploads/.gitkeep
+.env

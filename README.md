@@ -1,4 +1,4 @@
-# InvoEase – Freelance Invoice Generator
+ 0# InvoEase – Freelance Invoice Generator
 
 A sleek, browser-based invoice generator built with **HTML, CSS, and JavaScript**.  
 InvoEase helps freelancers and small businesses create **GST-compliant invoices** with **SGST/CGST calculation**, **discounts**, and **PDF export**, all within a simple and responsive interface.
